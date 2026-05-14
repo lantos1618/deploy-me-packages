@@ -1,7 +1,7 @@
 {
   "name": "deploy.me",
-  "version": "0.1.0",
-  "description": "Types and builders for deploy.me.ts files",
+  "version": "0.2.0",
+  "description": "TypeScript client + builders for deploy.me",
   "license": "MIT",
   "author": "Lyndon Leong <lyndon@lambda.run>",
   "repository": {
