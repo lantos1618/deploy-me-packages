@@ -1,0 +1,33 @@
+{
+  "name": "deploy.me",
+  "version": "0.1.0",
+  "description": "Types and builders for deploy.me.ts files",
+  "license": "MIT",
+  "author": "Lyndon Leong <lyndon@lambda.run>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lantos1618/deploy-me-sdk.git"
+  },
+  "homepage": "https://deploy.me",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
