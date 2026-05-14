@@ -12,6 +12,7 @@ import { ls } from "../commands/ls.js";
 import { rm } from "../commands/rm.js";
 import { open } from "../commands/open.js";
 import { init } from "../commands/init.js";
+import { logs } from "../commands/logs.js";
 import { help, version } from "../commands/meta.js";
 
 const argv = process.argv.slice(2);
@@ -42,6 +43,8 @@ async function main() {
       return rm(rest);
     case "open":
       return open(rest);
+    case "logs":
+      return logs(rest);
     case "init":
       return init(rest);
 

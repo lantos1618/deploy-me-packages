@@ -17,6 +17,7 @@ export function help(): void {
     `${c.mute}OBSERVE${c.reset}`,
     `  ${c.bold}ls${c.reset}                list active deploys`,
     `  ${c.bold}open${c.reset} ${c.mute}<name>${c.reset}      open the live URL in your browser`,
+    `  ${c.bold}logs${c.reset} ${c.mute}<name>${c.reset}      tail stdout/stderr ${c.mute}(Ctrl-C to stop)${c.reset}`,
     ``,
     `${c.mute}OVERRIDE${c.reset}`,
     `  ${c.bold}rm${c.reset} ${c.mute}<name>${c.reset}        stop and remove a deploy`,
