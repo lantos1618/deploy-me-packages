@@ -13,6 +13,8 @@ import { rm } from "../commands/rm.js";
 import { open } from "../commands/open.js";
 import { init } from "../commands/init.js";
 import { logs } from "../commands/logs.js";
+import { status } from "../commands/status.js";
+import { restart } from "../commands/restart.js";
 import { help, version } from "../commands/meta.js";
 
 const argv = process.argv.slice(2);
@@ -45,6 +47,10 @@ async function main() {
       return open(rest);
     case "logs":
       return logs(rest);
+    case "status":
+      return status(rest);
+    case "restart":
+      return restart(rest);
     case "init":
       return init(rest);
 
