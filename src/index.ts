@@ -4,9 +4,10 @@
 // See ARCHITECTURE.md in the main repo for how this fits with the engine,
 // website, and CLI.
 
-import { Transport, DeployMeError } from "./transport.js";
+import { Transport, DeployMeError, streamSSE, type LogLine } from "./transport.js";
 
 export { DeployMeError } from "./transport.js";
+export type { LogLine } from "./transport.js";
 
 const DEFAULT_BASE_URL = "https://api.run.deploy.me";
 
@@ -57,8 +58,12 @@ export interface Deployment {
   readonly image: string;
   readonly createdAt: string;
   stop(): Promise<void>;
-  /** Async iterator over log lines. May not be implemented by all engines. */
-  logs(): AsyncIterable<string>;
+  /**
+   * Stream container logs. By default tails the last 100 lines then follows
+   * new output until the iterator is broken out of. Each yielded line carries
+   * a `kind` ("out" | "err"), the text, and a timestamp.
+   */
+  logs(opts?: { follow?: boolean; tail?: number }): AsyncIterable<LogLine>;
 }
 
 // ─────────────────────── DeployBuilder ───────────────────────
@@ -202,9 +207,8 @@ function makeDeployment(
     async stop(): Promise<void> {
       await transport.request("DELETE", `/deploy/${fields.name}`);
     },
-    logs(): AsyncIterable<string> {
-      // Placeholder until the engine grows GET /deploy/:name/logs (SSE).
-      return (async function* () {})();
+    logs(opts?: { follow?: boolean; tail?: number }): AsyncIterable<LogLine> {
+      return transport.streamLogs(fields.name, opts);
     },
   };
 }
