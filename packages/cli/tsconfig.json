@@ -6,7 +6,8 @@
     "rootDir": "src",
     "declaration": false,
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
+    "customConditions": ["development"]
   },
   "include": ["src/**/*"]
 }
