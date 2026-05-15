@@ -2,7 +2,7 @@
 
 `dp` — the [deploy.me](https://deploy.me) CLI.
 
-Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lantos1618/deploy-me-packages/tree/main/packages/sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
+Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lambda-run/deploy-me-packages/tree/main/packages/sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
 
 ## Install
 
@@ -58,7 +58,7 @@ These need engine work before they can be wired up:
 - `dp secrets set/ls/rm` — encrypted env-var store
 - `dp login` — token mint via OAuth
 
-See [`ARCHITECTURE.md`](https://github.com/lantos1618/deploy-me/blob/main/ARCHITECTURE.md) in the main repo for the full picture.
+See [`ARCHITECTURE.md`](https://github.com/lambda-run/deploy.me/blob/main/ARCHITECTURE.md) in the main repo for the full picture.
 
 ## License
 
