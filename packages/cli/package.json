@@ -1,0 +1,33 @@
+{
+  "name": "deploy-me-cli",
+  "version": "0.1.0",
+  "description": "deploy.me CLI · the dp binary",
+  "license": "MIT",
+  "author": "Lyndon Leong <lyndon@lambda.run>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lantos1618/deploy-me-cli.git"
+  },
+  "homepage": "https://deploy.me",
+  "type": "module",
+  "bin": {
+    "dp": "./dist/bin/dp.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && chmod +x dist/bin/dp.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "bun src/bin/dp.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "deploy.me": "file:../deploy-me-sdk"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
