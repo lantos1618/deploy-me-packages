@@ -1,4 +1,4 @@
-# deploy-me-cli
+# @deploy-me/cli
 
 `dp` — the [deploy.me](https://deploy.me) CLI.
 
@@ -7,7 +7,7 @@ Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lambda-run/deploy-me-p
 ## Install
 
 ```bash
-npm install -g deploy-me-cli
+npm install -g @deploy-me/cli
 ```
 
 You'll also need a token from <https://deploy.me/dashboard> in `DEPLOY_ME_TOKEN`.

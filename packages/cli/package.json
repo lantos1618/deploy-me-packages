@@ -1,5 +1,5 @@
 {
-  "name": "deploy-me-cli",
+  "name": "@deploy-me/cli",
   "version": "0.1.0",
   "description": "deploy.me CLI · the dp binary",
   "license": "MIT",
