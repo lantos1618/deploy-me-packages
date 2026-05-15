@@ -20,7 +20,7 @@ const POLL_INTERVAL_MS = 8_000;
 const POLL_TIMEOUT_MS = 8 * 60_000; // 8 min cap per run
 
 function base(): string {
-  return getBaseUrl() ?? "https://api.run.deploy.me";
+  return getBaseUrl() ?? "https://api.deploy.me";
 }
 function authHeader(): Record<string, string> {
   return { authorization: `Bearer ${getToken()}` };

@@ -36,7 +36,7 @@ export function help(): void {
     ``,
     `${c.mute}ENV${c.reset}`,
     `  ${c.bold}DEPLOY_ME_TOKEN${c.reset}   ${c.mute}required — get one from ${c.reset}${c.flare}https://deploy.me/dashboard${c.reset}`,
-    `  ${c.bold}DEPLOY_ME_API_URL${c.reset} ${c.mute}override the control-plane URL (default api.run.deploy.me)${c.reset}`,
+    `  ${c.bold}DEPLOY_ME_API_URL${c.reset} ${c.mute}override the control-plane URL (default api.deploy.me)${c.reset}`,
   ];
   console.log(lines.join("\n"));
 }

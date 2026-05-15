@@ -10,12 +10,12 @@ import { deploymentFromEngineRow } from "./deployment.js";
 import type { DeployBuilder } from "./deploy-builder.js";
 import { DeployBuilderImpl } from "./deploy-builder.js";
 
-const DEFAULT_BASE_URL = "https://api.run.deploy.me";
+const DEFAULT_BASE_URL = "https://api.deploy.me";
 
 export interface ClientOptions {
   /** API token from deploy.me/dashboard. */
   token: string;
-  /** Override the control-plane base URL. Defaults to api.run.deploy.me. */
+  /** Override the control-plane base URL. Defaults to api.deploy.me. */
   baseUrl?: string;
   /** Default region, e.g. `"gra"`, `"sbg"`. */
   region?: string;
