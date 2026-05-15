@@ -9,7 +9,7 @@
       },
     },
     "packages/cli": {
-      "name": "deploy-me-cli",
+      "name": "@deploy-me/cli",
       "version": "0.1.0",
       "bin": {
         "dp": "./dist/bin/dp.js",
@@ -31,11 +31,11 @@
     },
   },
   "packages": {
+    "@deploy-me/cli": ["@deploy-me/cli@workspace:packages/cli"],
+
     "@deploy-me/sdk": ["@deploy-me/sdk@workspace:packages/sdk"],
 
     "@types/node": ["@types/node@22.19.19", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-dyh/xO2Fh5bYrfWaaqGrRQQGkNdmYw6AmaAUvYeUMNTWQtvb796ikLdmTchRmOlOiIJ1TDXfWgVx1QkUlQ6Hew=="],
-
-    "deploy-me-cli": ["deploy-me-cli@workspace:packages/cli"],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
