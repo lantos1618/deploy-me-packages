@@ -1,7 +1,7 @@
 // deploy.me SDK — public surface.
 //
 // The implementation is split across focused modules. This file does
-// re-exports only so consumers can `import { client, Currency, ... } from "deploy.me"`.
+// re-exports only so consumers can `import { client, Currency, ... } from "@deploy-me/sdk"`.
 
 // Transport / errors
 export { DeployMeError } from "./transport.js";
