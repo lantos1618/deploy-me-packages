@@ -84,7 +84,7 @@ client({
 
 ## Architecture
 
-See [`ARCHITECTURE.md`](https://github.com/lantos1618/deploy-me-packages#architecture)
+See [`ARCHITECTURE.md`](https://github.com/lambda-run/deploy-me-packages#architecture)
 in the main repo for how the SDK fits into the engine → SDK → (website, CLI)
 stack. The SDK source lives at `packages/sdk/`.
 
