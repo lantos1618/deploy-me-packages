@@ -2,7 +2,7 @@
 
 `dp` — the [deploy.me](https://deploy.me) CLI.
 
-Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lantos1618/deploy-me-sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
+Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lantos1618/deploy-me-packages/tree/main/packages/sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
 
 ## Install
 
@@ -36,6 +36,9 @@ dp rm mc       # stop + remove (does NOT edit main.ts)
 | `dp up [file]` | Run `main.ts` (or a file you pass). Uses `bun` if present, else `node --experimental-strip-types` (22.6+), else `tsx` |
 | `dp ls` | List active deploys |
 | `dp open <name>` | Open the deploy's URL in your default browser |
+| `dp logs <name>` | Tail stdout/stderr |
+| `dp status <name>` | Health, resource use, restart count |
+| `dp restart <name>` | Restart a deploy in place |
 | `dp rm <name>` | Stop and remove (override, not edit) |
 | `dp help` | Print usage |
 | `dp version` | Print version |
@@ -45,14 +48,12 @@ dp rm mc       # stop + remove (does NOT edit main.ts)
 | Var | What |
 |---|---|
 | `DEPLOY_ME_TOKEN` | Required. Get one from <https://deploy.me/dashboard>. |
-| `DEPLOY_ME_API_URL` | Optional. Override the control-plane URL. Default `https://api.run.deploy.me`. |
+| `DEPLOY_ME_API_URL` | Optional. Override the control-plane URL. Default `https://api.deploy.me`. |
 
 ## Coming
 
 These need engine work before they can be wired up:
 
-- `dp logs <name>` — tail stdout/stderr (needs SSE endpoint on engine)
-- `dp status <name>` — health checks, CPU/RAM use, restart count
 - `dp exec <name> <cmd>` — interactive shell into a container
 - `dp secrets set/ls/rm` — encrypted env-var store
 - `dp login` — token mint via OAuth
