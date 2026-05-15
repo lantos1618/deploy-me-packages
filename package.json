@@ -1,0 +1,13 @@
+{
+  "name": "deploy-me-packages",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Public packages for deploy.me — SDK and CLI.",
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "typecheck": "bun run --filter '*' typecheck",
+    "build": "bun run --filter '*' build"
+  },
+  "devDependencies": { "typescript": "^5.6.0" }
+}
