@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "deploy.me": "file:../deploy-me-sdk"
+    "deploy.me": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
