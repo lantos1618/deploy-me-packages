@@ -1,5 +1,5 @@
 {
-  "name": "deploy.me",
+  "name": "@deploy-me/sdk",
   "version": "0.2.0",
   "description": "TypeScript client + builders for deploy.me",
   "license": "MIT",
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "bun run build"
   },
   "devDependencies": {
     "typescript": "^5.6.0"
