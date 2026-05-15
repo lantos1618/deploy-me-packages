@@ -1,5 +1,5 @@
 import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, table, c } from "../util.js";
+import { getToken, getBaseUrl, table, statusBadge, c } from "../util.js";
 
 export async function ls(): Promise<void> {
   const dm = client({ token: getToken(), baseUrl: getBaseUrl(), timeoutMs: 15_000 });
@@ -17,11 +17,4 @@ export async function ls(): Promise<void> {
       statusBadge(d.status),
     ]),
   );
-}
-
-function statusBadge(s: string): string {
-  if (s === "live") return `${c.green}● live${c.reset}`;
-  if (s === "deploying") return `${c.camo}● deploying${c.reset}`;
-  if (s === "stopped") return `${c.mute}○ stopped${c.reset}`;
-  return `${c.red}● ${s}${c.reset}`;
 }

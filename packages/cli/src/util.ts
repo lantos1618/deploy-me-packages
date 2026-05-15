@@ -49,9 +49,16 @@ export function table(headers: string[], rows: string[][]): void {
   }
 }
 
-// Strip ANSI before measuring width.
-function visibleLen(s: string): number {
+// Strip ANSI before measuring width. Exported for tests.
+export function visibleLen(s: string): number {
   return s.replace(/\x1b\[[0-9;]*m/g, "").length;
+}
+
+export function statusBadge(s: string): string {
+  if (s === "live") return `${ansi.green}● live${ansi.reset}`;
+  if (s === "deploying") return `${ansi.camo}● deploying${ansi.reset}`;
+  if (s === "stopped") return `${ansi.mute}○ stopped${ansi.reset}`;
+  return `${ansi.red}● ${s}${ansi.reset}`;
 }
 
 export function getToken(): string {
