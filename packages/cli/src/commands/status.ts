@@ -1,5 +1,5 @@
 import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, fail, c } from "../util.js";
+import { getToken, getBaseUrl, fail, statusBadge, c } from "../util.js";
 
 export async function status(args: string[]): Promise<void> {
   const name = args[0];
@@ -31,13 +31,6 @@ export async function status(args: string[]): Promise<void> {
   for (const [k, v] of rows) {
     console.log(`  ${c.mute}${k.padEnd(lw)}${c.reset}  ${v}`);
   }
-}
-
-function statusBadge(s: string): string {
-  if (s === "live") return `${c.green}● live${c.reset}`;
-  if (s === "deploying") return `${c.camo}● deploying${c.reset}`;
-  if (s === "stopped") return `${c.mute}○ stopped${c.reset}`;
-  return `${c.red}● ${s}${c.reset}`;
 }
 
 function short(iso: string): string {

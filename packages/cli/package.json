@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && chmod +x dist/bin/dp.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test",
     "dev": "bun src/bin/dp.ts",
     "prepublishOnly": "bun run build"
   },
@@ -28,6 +29,7 @@
     "@deploy-me/sdk": "workspace:*"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/node": "^22.0.0",
     "typescript": "^5.6.0"
   }
