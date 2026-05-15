@@ -43,8 +43,10 @@ export function help(): void {
 
 export function version(): void {
   try {
+    // From source `src/commands/meta.ts` or compiled `dist/commands/meta.js`,
+    // package.json is two dirs up.
     const here = dirname(fileURLToPath(import.meta.url));
-    const pkg = JSON.parse(readFileSync(join(here, "..", "..", "..", "package.json"), "utf8"));
+    const pkg = JSON.parse(readFileSync(join(here, "..", "..", "package.json"), "utf8"));
     console.log(`dp ${pkg.version}`);
   } catch {
     console.log("dp (dev)");

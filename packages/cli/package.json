@@ -6,7 +6,8 @@
   "author": "Lyndon Leong <lyndon@lambda.run>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lantos1618/deploy-me-cli.git"
+    "url": "git+https://github.com/lantos1618/deploy-me-packages.git",
+    "directory": "packages/cli"
   },
   "homepage": "https://deploy.me",
   "type": "module",
@@ -21,7 +22,7 @@
     "build": "tsc -p tsconfig.json && chmod +x dist/bin/dp.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "dev": "bun src/bin/dp.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "bun run build"
   },
   "dependencies": {
     "deploy.me": "workspace:*"

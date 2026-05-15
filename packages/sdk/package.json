@@ -6,7 +6,8 @@
   "author": "Lyndon Leong <lyndon@lambda.run>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lantos1618/deploy-me-sdk.git"
+    "url": "git+https://github.com/lantos1618/deploy-me-packages.git",
+    "directory": "packages/sdk"
   },
   "homepage": "https://deploy.me",
   "type": "module",
