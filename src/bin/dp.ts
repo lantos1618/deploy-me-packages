@@ -16,6 +16,7 @@ import { logs } from "../commands/logs.js";
 import { status } from "../commands/status.js";
 import { restart } from "../commands/restart.js";
 import { help, version } from "../commands/meta.js";
+import { research } from "../commands/research.js";
 
 const argv = process.argv.slice(2);
 const cmd = argv[0];
@@ -53,6 +54,8 @@ async function main() {
       return restart(rest);
     case "init":
       return init(rest);
+    case "research":
+      return research(rest);
 
     default:
       console.error(`dp: unknown command: ${cmd}`);
