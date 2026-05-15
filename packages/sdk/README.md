@@ -1,19 +1,21 @@
-# deploy.me
+# @deploy-me/sdk
 
 TypeScript SDK for the [deploy.me](https://deploy.me) control plane.
 
-> **Status:** v0.2 — real `client()` runtime wired to `api.run.deploy.me`. List, deploy, get, stop all work end-to-end. `Deployment.logs()` is a placeholder until the engine grows an SSE log endpoint.
+> **Status:** v0.2 — real `client()` runtime wired to `api.deploy.me`. List, deploy, get, stop, and SSE log streaming via `Deployment.logs()` all work end-to-end.
 
 ## Install
 
 ```bash
-npm install deploy.me
+npm install @deploy-me/sdk
+# or
+bun add @deploy-me/sdk
 ```
 
 ## Quick start
 
 ```ts
-import { client } from "deploy.me";
+import { client } from "@deploy-me/sdk";
 
 const dm = client({ token: process.env.DEPLOY_ME_TOKEN! });
 
@@ -36,7 +38,7 @@ Run it with `bun main.ts` or `node main.ts` (Node 22+).
 One file, many deploys, mapped across machines:
 
 ```ts
-import { client } from "deploy.me";
+import { client } from "@deploy-me/sdk";
 
 const dm = client({ token: process.env.DEPLOY_ME_TOKEN! });
 
@@ -72,7 +74,7 @@ console.log({ agent: agent.url, mc: mc.url, blog: blog.url });
 ```ts
 client({
   token: string;            // required
-  baseUrl?: string;         // default "https://api.run.deploy.me"
+  baseUrl?: string;         // default "https://api.deploy.me"
   region?: string;          // default "eu-west"
   fetch?: typeof fetch;     // tests / custom transport
   timeoutMs?: number;       // default 30000 — bump for slow image pulls
@@ -82,9 +84,9 @@ client({
 
 ## Architecture
 
-See [`ARCHITECTURE.md`](https://github.com/lantos1618/deploy-me-sdk#architecture)
+See [`ARCHITECTURE.md`](https://github.com/lantos1618/deploy-me-packages#architecture)
 in the main repo for how the SDK fits into the engine → SDK → (website, CLI)
-stack.
+stack. The SDK source lives at `packages/sdk/`.
 
 ## License
 
