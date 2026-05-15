@@ -25,7 +25,7 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "deploy.me": "workspace:*"
+    "@deploy-me/sdk": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

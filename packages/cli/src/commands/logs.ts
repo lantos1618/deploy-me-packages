@@ -1,4 +1,4 @@
-import { client } from "deploy.me";
+import { client } from "@deploy-me/sdk";
 import { getToken, getBaseUrl, fail, c } from "../util.js";
 
 export async function logs(args: string[]): Promise<void> {

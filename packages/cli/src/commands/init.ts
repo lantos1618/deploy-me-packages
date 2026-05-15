@@ -2,7 +2,7 @@ import { writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { ok, fail, c } from "../util.js";
 
-const MAIN_TEMPLATE = `import { client } from "deploy.me";
+const MAIN_TEMPLATE = `import { client } from "@deploy-me/sdk";
 
 const dm = client({ token: process.env.DEPLOY_ME_TOKEN! });
 

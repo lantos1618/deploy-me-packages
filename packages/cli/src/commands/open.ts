@@ -1,4 +1,4 @@
-import { client } from "deploy.me";
+import { client } from "@deploy-me/sdk";
 import { getToken, getBaseUrl, ok, fail, c } from "../util.js";
 import { spawn } from "node:child_process";
 import { platform } from "node:os";

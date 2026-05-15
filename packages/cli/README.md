@@ -2,7 +2,7 @@
 
 `dp` — the [deploy.me](https://deploy.me) CLI.
 
-Thin wrapper on the [`deploy.me`](https://github.com/lantos1618/deploy-me-sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
+Thin wrapper on the [`@deploy-me/sdk`](https://github.com/lantos1618/deploy-me-sdk) SDK. Everything non-trivial lives in the SDK; this package is argv parsing + pretty output.
 
 ## Install
 
