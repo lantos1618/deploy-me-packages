@@ -1,20 +1,13 @@
-import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, ok, fail, c } from "../util.js";
+import { resolveDeploy } from "../resolve.js";
+import { ok, c } from "../util.js";
 import { spawn } from "node:child_process";
 import { platform } from "node:os";
 
 export async function open(args: string[]): Promise<void> {
-  const name = args[0];
-  if (!name) {
-    fail(`usage: dp open <name>`);
-    process.exit(64);
-  }
-  const dm = client({ token: getToken(), baseUrl: getBaseUrl(), timeoutMs: 15_000 });
-  const d = await dm.get(name);
-  if (!d) {
-    fail(`no deploy named "${name}"`);
-    process.exit(1);
-  }
+  const { d } = await resolveDeploy(args, {
+    usage: "dp open <name>",
+    timeoutMs: 15_000,
+  });
 
   ok(`${c.flare}${d.url}${c.reset}`);
   openInBrowser(d.url);
