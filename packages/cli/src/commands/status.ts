@@ -1,18 +1,11 @@
-import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, fail, statusBadge, c } from "../util.js";
+import { resolveDeploy } from "../resolve.js";
+import { statusBadge, c } from "../util.js";
 
 export async function status(args: string[]): Promise<void> {
-  const name = args[0];
-  if (!name) {
-    fail(`usage: dp status <name>`);
-    process.exit(64);
-  }
-  const dm = client({ token: getToken(), baseUrl: getBaseUrl(), timeoutMs: 15_000 });
-  const d = await dm.get(name);
-  if (!d) {
-    fail(`no deploy named "${name}"`);
-    process.exit(1);
-  }
+  const { d } = await resolveDeploy(args, {
+    usage: "dp status <name>",
+    timeoutMs: 15_000,
+  });
 
   const s = d.stats ?? {};
   const rows: Array<[string, string]> = [

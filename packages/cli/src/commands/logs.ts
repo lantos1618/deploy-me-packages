@@ -1,24 +1,15 @@
-import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, fail, c } from "../util.js";
+import { resolveDeploy } from "../resolve.js";
+import { c } from "../util.js";
 
 export async function logs(args: string[]): Promise<void> {
-  const name = args[0];
-  if (!name) {
-    fail(`usage: dp logs <name> [--no-follow] [--tail N]`);
-    process.exit(64);
-  }
   const follow = !args.includes("--no-follow");
   const tailIdx = args.indexOf("--tail");
   const tail = tailIdx >= 0 ? Number(args[tailIdx + 1] ?? "100") : 100;
 
-  const dm = client({ token: getToken(), baseUrl: getBaseUrl() });
-  const d = await dm.get(name);
-  if (!d) {
-    fail(`no deploy named "${name}"`);
-    process.exit(1);
-  }
+  const { d } = await resolveDeploy(args, {
+    usage: "dp logs <name> [--no-follow] [--tail N]",
+  });
 
-  // Ctrl-C cleanly exits without a stack trace.
   process.on("SIGINT", () => process.exit(0));
 
   for await (const ln of d.logs({ follow, tail })) {

@@ -9,5 +9,6 @@
     "types": ["node", "bun"],
     "customConditions": ["development"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["**/*.test.ts"]
 }

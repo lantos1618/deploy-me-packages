@@ -1,18 +1,11 @@
-import { client } from "@deploy-me/sdk";
-import { getToken, getBaseUrl, ok, fail, c } from "../util.js";
+import { resolveDeploy } from "../resolve.js";
+import { ok, c } from "../util.js";
 
 export async function rm(args: string[]): Promise<void> {
-  const name = args[0];
-  if (!name) {
-    fail(`usage: dp rm <name>`);
-    process.exit(64);
-  }
-  const dm = client({ token: getToken(), baseUrl: getBaseUrl(), timeoutMs: 30_000 });
-  const d = await dm.get(name);
-  if (!d) {
-    fail(`no deploy named "${name}"`);
-    process.exit(1);
-  }
+  const { d, name } = await resolveDeploy(args, {
+    usage: "dp rm <name>",
+    timeoutMs: 30_000,
+  });
   await d.stop();
   ok(`stopped ${c.bold}${name}${c.reset}`);
 }
