@@ -37,41 +37,24 @@ export class DeployBuilderImpl implements DeployBuilder {
     private readonly _transport?: Transport,
   ) {}
 
-  name(slug: string): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, name: slug }, this._transport);
+  // Every chain method returns a fresh builder with one cfg field swapped in.
+  // Centralizing the spread + transport-forwarding keeps individual methods
+  // one line of intent.
+  private _with(patch: Partial<DeployConfig>): DeployBuilder {
+    return new DeployBuilderImpl({ ...this._cfg, ...patch }, this._transport);
   }
-  image(ref: string): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, image: ref }, this._transport);
-  }
-  target(t: Target): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, target: t }, this._transport);
-  }
-  env(map: EnvMap): DeployBuilder {
-    return new DeployBuilderImpl(
-      { ...this._cfg, env: { ...this._cfg.env, ...map } },
-      this._transport,
-    );
-  }
-  scale(s: ScaleConfig): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, scale: s }, this._transport);
-  }
-  http(h: HttpConfig): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, http: h }, this._transport);
-  }
-  schedule(c: CronExpr): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, schedule: c }, this._transport);
-  }
-  timeout(t: string): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, timeout: t }, this._transport);
-  }
-  budget(amount: number, currency: CurrencyType = Currency.EUR): DeployBuilder {
-    return new DeployBuilderImpl(
-      { ...this._cfg, budget: { amount, currency } },
-      this._transport,
-    );
-  }
-  onMachine(m: MachineConfig): DeployBuilder {
-    return new DeployBuilderImpl({ ...this._cfg, machine: m }, this._transport);
+
+  name(slug: string)       { return this._with({ name: slug }); }
+  image(ref: string)       { return this._with({ image: ref }); }
+  target(t: Target)        { return this._with({ target: t }); }
+  env(map: EnvMap)         { return this._with({ env: { ...this._cfg.env, ...map } }); }
+  scale(s: ScaleConfig)    { return this._with({ scale: s }); }
+  http(h: HttpConfig)      { return this._with({ http: h }); }
+  schedule(c: CronExpr)    { return this._with({ schedule: c }); }
+  timeout(t: string)       { return this._with({ timeout: t }); }
+  onMachine(m: MachineConfig) { return this._with({ machine: m }); }
+  budget(amount: number, currency: CurrencyType = Currency.EUR) {
+    return this._with({ budget: { amount, currency } });
   }
 
   toJSON(): DeployConfig {
