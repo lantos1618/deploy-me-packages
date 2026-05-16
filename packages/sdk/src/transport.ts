@@ -2,16 +2,8 @@
 // Keeps auth, error mapping, and retry logic in one place so the public
 // API classes don't have to think about it.
 
-export class DeployMeError extends Error {
-  readonly status: number;
-  readonly body: unknown;
-  constructor(message: string, status: number, body: unknown) {
-    super(message);
-    this.name = "DeployMeError";
-    this.status = status;
-    this.body = body;
-  }
-}
+import { DeployMeError } from "./errors.js";
+import { streamSSE, type LogLine } from "./sse.js";
 
 export type TransportOptions = {
   baseUrl: string;
@@ -120,42 +112,6 @@ function backoff(attempt: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-export type LogLine = { kind: "out" | "err"; text: string; t: number };
-
-/**
- * Open a server-sent-events stream and yield each `data:` JSON payload.
- * Returns an AsyncIterable that closes when the upstream closes or the
- * consumer breaks out of the loop.
- */
-export async function* streamSSE(
-  url: string,
-  init: { headers: Record<string, string>; fetch: typeof fetch },
-): AsyncIterable<LogLine> {
-  const res = await init.fetch(url, { headers: init.headers });
-  if (!res.ok || !res.body) {
-    throw new DeployMeError(`SSE failed ${res.status}`, res.status, null);
-  }
-  const reader = res.body.getReader();
-  const dec = new TextDecoder();
-  let buf = "";
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buf += dec.decode(value, { stream: true });
-      let nl: number;
-      while ((nl = buf.indexOf("\n\n")) >= 0) {
-        const frame = buf.slice(0, nl);
-        buf = buf.slice(nl + 2);
-        for (const line of frame.split("\n")) {
-          if (line.startsWith("data: ")) {
-            const raw = line.slice(6);
-            try { yield JSON.parse(raw) as LogLine; } catch {}
-          }
-        }
-      }
-    }
-  } finally {
-    try { reader.cancel(); } catch {}
-  }
-}
+// Re-export for backwards compat with existing imports from "./transport.js".
+export { DeployMeError } from "./errors.js";
+export { type LogLine, streamSSE } from "./sse.js";
