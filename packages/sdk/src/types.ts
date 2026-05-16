@@ -91,6 +91,7 @@ export function mapEngineStatus(state: string): DeploymentStatus {
     case "removing":
       return "stopped";
     case "dead": return "failed";
-    default: return "live";
+    // Unknown engine state: don't claim "live" — we can't prove it's serving.
+    default: return "failed";
   }
 }
