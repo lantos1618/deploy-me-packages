@@ -27,5 +27,8 @@ jobs:
       - name: Build all packages
         run: bun run --filter '*' build
 
+      - name: Test SDK
+        run: bun run --filter @deploy-me/sdk test
+
       - name: Test CLI
         run: bun run --filter @deploy-me/cli test
