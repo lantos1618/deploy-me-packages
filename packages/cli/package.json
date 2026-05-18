@@ -1,6 +1,6 @@
 {
   "name": "@deploy-me/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "deploy.me CLI · the `deploy` binary (alias `dm`, legacy `dp`)",
   "license": "MIT",
   "author": "Lyndon Leong <lyndon@lambda.run>",
