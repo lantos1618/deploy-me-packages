@@ -5,7 +5,7 @@ export async function ls(): Promise<void> {
   const dm = client({ token: getToken(), baseUrl: getBaseUrl(), timeoutMs: 15_000 });
   const deploys = await dm.list();
   if (deploys.length === 0) {
-    console.log(`${c.mute}no deploys yet — write ${c.reset}${c.camo}main.ts${c.reset}${c.mute} and run ${c.reset}${c.camo}dp up${c.reset}`);
+    console.log(`${c.mute}no deploys yet — write ${c.reset}${c.camo}deploy.ts${c.reset}${c.mute} and run ${c.reset}${c.camo}deploy up${c.reset}`);
     return;
   }
   table(

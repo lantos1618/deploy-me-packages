@@ -3,7 +3,7 @@ import { ok, c } from "../util.js";
 
 export async function rm(args: string[]): Promise<void> {
   const { d, name } = await resolveDeploy(args, {
-    usage: "dp rm <name>",
+    usage: "deploy rm <name>",
     timeoutMs: 30_000,
   });
   await d.stop();

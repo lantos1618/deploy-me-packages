@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-// dp — the deploy.me CLI.
+// deploy — the deploy.me CLI (also installed as `dm` short alias, and
+// `dp` for one release of back-compat).
 //
 // Mental model:
-//   main.ts is the declarative recipe (your source of truth).
-//   `dp up` runs it.
-//   `dp ls / logs / rm / open` are observability + manual overrides.
-//   Manual overrides do NOT edit main.ts. Re-running `dp up` recreates them.
+//   deploy.ts is the declarative recipe (your source of truth).
+//   `deploy up` runs it.
+//   `deploy ls / logs / rm / open` are observability + manual overrides.
+//   Manual overrides do NOT edit deploy.ts. Re-running `deploy up` recreates them.
 
 import { up } from "../commands/up.js";
 import { ls } from "../commands/ls.js";
@@ -58,15 +59,15 @@ async function main() {
       return research(rest);
 
     default:
-      console.error(`dp: unknown command: ${cmd}`);
-      console.error(`run \`dp help\` for usage`);
+      console.error(`deploy: unknown command: ${cmd}`);
+      console.error(`run \`deploy help\` for usage`);
       process.exit(64);
   }
 }
 
 main().catch((e: any) => {
   const msg = e?.message ?? String(e);
-  console.error(`dp: ${msg}`);
+  console.error(`deploy: ${msg}`);
   if (e?.status) console.error(`     HTTP ${e.status}`);
   if (e?.body && typeof e.body === "object") {
     try { console.error(`     ${JSON.stringify(e.body)}`); } catch {}

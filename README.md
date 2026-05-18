@@ -1,7 +1,7 @@
 # deploy-me-packages
 
 Public packages for **[deploy.me](https://deploy.me)** — the
-TypeScript SDK and the `dp` CLI. This is the contract surface for
+TypeScript SDK and the `deploy` CLI (alias `dm`). This is the contract surface for
 deploying containers onto deploy.me from your own code or terminal.
 
 The private control plane (engine, auth, database) and the marketing
@@ -13,7 +13,7 @@ only thing third-party code needs to talk to deploy.me.**
 ```
 packages/
 ├── sdk/   @deploy-me/sdk   TypeScript client — programmatic deploys
-└── cli/   @deploy-me/cli   `dp` binary — terminal-friendly wrapper over the SDK
+└── cli/   @deploy-me/cli   `deploy` binary (alias `dm`) — terminal-friendly wrapper over the SDK
 ```
 
 Both packages ship as `bun build`-compatible TypeScript with full
@@ -23,12 +23,12 @@ type definitions.
 
 ```bash
 # CLI — no install needed
-npx -p @deploy-me/cli dp init        # scaffold deploy.ts + .env
-npx -p @deploy-me/cli dp up          # deploy
+npx -p @deploy-me/cli deploy init    # scaffold deploy.ts + .env
+npx -p @deploy-me/cli deploy up      # deploy
 
 # Or globally
 npm i -g @deploy-me/cli
-dp up
+deploy up                            # or `dm up` if you want fewer keystrokes
 ```
 
 ```ts
@@ -69,38 +69,43 @@ the CLI does is built on top of these primitives.
 The SDK has **zero runtime dependencies** — it's a thin wrapper over
 `fetch` and the WHATWG Streams API.
 
-## What's in `@deploy-me/cli` (the `dp` binary)
+## What's in `@deploy-me/cli` (the `deploy` binary (alias `dm`))
 
-`dp` is a thin command-line wrapper over the SDK. Its mental model:
+`deploy` is a thin command-line wrapper over the SDK. Its mental model:
 
 > `deploy.ts` is the declarative recipe (your source of truth).
-> `dp up` runs it.
-> `dp ls / logs / status / restart / rm / open` are observability and
+> `deploy up` runs it.
+> `deploy ls / logs / status / restart / rm / open` are observability and
 > manual overrides. Manual overrides do **not** edit `deploy.ts` —
-> re-running `dp up` recreates the declared state.
+> re-running `deploy up` recreates the declared state.
 
 ### Commands
 
 | Command         | What it does                                                                     |
 |-----------------|----------------------------------------------------------------------------------|
-| `dp init`       | Scaffold a fresh `deploy.ts` + `.env` in the current directory.                  |
-| `dp up`         | Execute `deploy.ts` against the engine and stream live build/run events.         |
-| `dp ls`         | List your deployments (name · machine · URL · region · uptime).                  |
-| `dp status <n>` | Detailed status for one deployment.                                              |
-| `dp logs <n>`   | Tail logs over SSE.                                                              |
-| `dp open <n>`   | Open the deployment's public URL in your default browser.                        |
-| `dp restart <n>`| Restart one deployment (without re-pulling the image).                           |
-| `dp rm <n>`     | Stop and remove one deployment. Two-step confirm.                                |
-| `dp research`   | Compute-catalog research helpers — `<slug>`, `all`, `ls`. Hits the control       |
+| `deploy init`       | Scaffold a fresh `deploy.ts` + `.env` in the current directory.                  |
+| `deploy up`         | Execute `deploy.ts` against the engine and stream live build/run events.         |
+| `deploy ls`         | List your deployments (name · machine · URL · region · uptime).                  |
+| `deploy status <n>` | Detailed status for one deployment.                                              |
+| `deploy logs <n>`   | Tail logs over SSE.                                                              |
+| `deploy open <n>`   | Open the deployment's public URL in your default browser.                        |
+| `deploy restart <n>`| Restart one deployment (without re-pulling the image).                           |
+| `deploy rm <n>`     | Stop and remove one deployment. Two-step confirm.                                |
+| `deploy research`   | Compute-catalog research helpers — `<slug>`, `all`, `ls`. Hits the control       |
 |                 | plane's research agent to refresh provider pricing snapshots.                    |
-| `dp help`       | Usage.                                                                           |
-| `dp version`    | Print the CLI version.                                                           |
+| `deploy help`       | Usage.                                                                           |
+| `deploy version`    | Print the CLI version.                                                           |
 
 ### Auth
 
-`dp` reads `DEPLOY_ME_TOKEN` from the environment (or from `.env` via
-Bun's auto-loading). Generate a token from the
+`deploy` reads `DEPLOY_ME_TOKEN` from the environment (or from `.env`
+via Bun's auto-loading). Generate a token from the
 [dashboard](https://deploy.me/dashboard) after signing in with GitHub.
+
+> **Binary names:** the npm package installs three executables for the
+> same CLI — `deploy` (primary), `dm` (short alias), and `dp` (kept for
+> one release of back-compat — will be removed in 0.3). Pick whichever
+> fits your muscle memory.
 
 New accounts land on a waitlist — compute mutations are gated until an
 admin approves the account. See deploy.me/dashboard for the current

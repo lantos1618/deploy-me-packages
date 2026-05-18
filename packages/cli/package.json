@@ -1,7 +1,7 @@
 {
   "name": "@deploy-me/cli",
-  "version": "0.1.0",
-  "description": "deploy.me CLI · the dp binary",
+  "version": "0.2.0",
+  "description": "deploy.me CLI · the `deploy` binary (alias `dm`, legacy `dp`)",
   "license": "MIT",
   "author": "Lyndon Leong <lyndon@lambda.run>",
   "repository": {
@@ -12,17 +12,19 @@
   "homepage": "https://deploy.me",
   "type": "module",
   "bin": {
-    "dp": "./dist/bin/dp.js"
+    "deploy": "./dist/bin/deploy.js",
+    "dm":     "./dist/bin/deploy.js",
+    "dp":     "./dist/bin/deploy.js"
   },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && chmod +x dist/bin/dp.js",
+    "build": "tsc -p tsconfig.json && chmod +x dist/bin/deploy.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "bun test",
-    "dev": "bun src/bin/dp.ts",
+    "dev": "bun src/bin/deploy.ts",
     "prepublishOnly": "bun run build"
   },
   "dependencies": {

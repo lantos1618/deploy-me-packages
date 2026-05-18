@@ -3,7 +3,7 @@ import { ok, c } from "../util.js";
 
 export async function restart(args: string[]): Promise<void> {
   const { d, name } = await resolveDeploy(args, {
-    usage: "dp restart <name>",
+    usage: "deploy restart <name>",
     timeoutMs: 30_000,
   });
   await d.restart();

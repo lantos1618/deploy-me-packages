@@ -3,7 +3,7 @@ import { statusBadge, c } from "../util.js";
 
 export async function status(args: string[]): Promise<void> {
   const { d } = await resolveDeploy(args, {
-    usage: "dp status <name>",
+    usage: "deploy status <name>",
     timeoutMs: 15_000,
   });
 
