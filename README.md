@@ -128,7 +128,7 @@ release notes.
 
 | Project                                    | What                                                        |
 |--------------------------------------------|-------------------------------------------------------------|
-| [deploy.me](https://deploy.me)             | Marketing site + COMPARE table (25 providers, 3,800+ tiers) |
+| [deploy.me](https://deploy.me)             | Marketing site + COMPARE table (26 providers, 3,900+ tiers) |
 | [deploy.me/docs](https://deploy.me/docs)   | Public docs · `deploy.ts` reference                         |
 | [deploy.me/docs/llms.txt](https://deploy.me/docs/llms.txt) | Plain-text doc surface for AI agents          |
 | `lambda-run/deploy-me` (private)           | Control plane · engine · catalog · GHA deploy pipeline      |
