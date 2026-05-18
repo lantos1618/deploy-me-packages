@@ -4,16 +4,16 @@ import { spawnSync, spawn } from "node:child_process";
 import { c, fail, info } from "../util.js";
 
 export async function up(args: string[]): Promise<void> {
-  const file = resolve(args[0] ?? "main.ts");
+  const file = resolve(args[0] ?? "deploy.ts");
   if (!existsSync(file)) {
     fail(`no such file: ${file}`);
-    fail(`run ${c.camo}dp init${c.reset} to scaffold a starter main.ts`);
+    fail(`run ${c.camo}deploy init${c.reset} to scaffold a starter deploy.ts`);
     process.exit(1);
   }
 
   const runner = pickRunner();
   if (!runner) {
-    fail("need bun or node 22.6+ to run main.ts");
+    fail("need bun or node 22.6+ to run deploy.ts");
     fail(`  install bun:  ${c.flare}https://bun.sh${c.reset}`);
     fail(`  or upgrade node to 22.6+ for --experimental-strip-types`);
     process.exit(1);

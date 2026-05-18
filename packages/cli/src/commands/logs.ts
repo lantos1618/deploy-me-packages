@@ -7,7 +7,7 @@ export async function logs(args: string[]): Promise<void> {
   const tail = tailIdx >= 0 ? Number(args[tailIdx + 1] ?? "100") : 100;
 
   const { d } = await resolveDeploy(args, {
-    usage: "dp logs <name> [--no-follow] [--tail N]",
+    usage: "deploy logs <name> [--no-follow] [--tail N]",
   });
 
   process.on("SIGINT", () => process.exit(0));

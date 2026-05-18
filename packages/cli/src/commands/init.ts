@@ -29,7 +29,7 @@ export async function init(args: string[]): Promise<void> {
   const dir = resolve(args[0] ?? ".");
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 
-  const mainPath = join(dir, "main.ts");
+  const mainPath = join(dir, "deploy.ts");
   if (existsSync(mainPath)) {
     fail(`${mainPath} already exists — refusing to overwrite`);
     process.exit(1);
@@ -45,7 +45,7 @@ export async function init(args: string[]): Promise<void> {
   console.log("");
   console.log(`${c.mute}next:${c.reset}`);
   console.log(`  ${c.camo}export DEPLOY_ME_TOKEN=...${c.reset}`);
-  console.log(`  ${c.camo}dp up${c.reset}`);
+  console.log(`  ${c.camo}deploy up${c.reset}`);
 }
 
 function writeIfMissing(path: string, content: string): void {

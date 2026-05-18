@@ -5,14 +5,14 @@ import { dirname, join } from "node:path";
 
 export function help(): void {
   const lines = [
-    `${c.camo}dp${c.reset}  ${c.mute}— the deploy.me CLI${c.reset}`,
+    `${c.camo}deploy${c.reset}  ${c.mute}— the deploy.me CLI (alias: ${c.reset}${c.camo}dm${c.reset}${c.mute})${c.reset}`,
     ``,
     `${c.mute}USAGE${c.reset}`,
-    `  dp ${c.mute}<command>${c.reset}`,
+    `  deploy ${c.mute}<command>${c.reset}`,
     ``,
     `${c.mute}DEPLOY${c.reset}`,
-    `  ${c.bold}up${c.reset} ${c.mute}[file]${c.reset}        run ${c.camo}main.ts${c.reset} (or the file you pass)`,
-    `  ${c.bold}init${c.reset} ${c.mute}[dir]${c.reset}       scaffold a starter ${c.camo}main.ts${c.reset}`,
+    `  ${c.bold}up${c.reset} ${c.mute}[file]${c.reset}        run ${c.camo}deploy.ts${c.reset} (or the file you pass)`,
+    `  ${c.bold}init${c.reset} ${c.mute}[dir]${c.reset}       scaffold a starter ${c.camo}deploy.ts${c.reset}`,
     ``,
     `${c.mute}OBSERVE${c.reset}`,
     `  ${c.bold}ls${c.reset}                list active deploys`,
@@ -23,7 +23,7 @@ export function help(): void {
     `${c.mute}OVERRIDE${c.reset}`,
     `  ${c.bold}restart${c.reset} ${c.mute}<name>${c.reset}   restart in place`,
     `  ${c.bold}rm${c.reset} ${c.mute}<name>${c.reset}        stop and remove a deploy`,
-    `                    ${c.mute}(note: does not edit main.ts — running ${c.reset}${c.camo}dp up${c.reset}${c.mute} recreates it)${c.reset}`,
+    `                    ${c.mute}(note: does not edit deploy.ts — running ${c.reset}${c.camo}deploy up${c.reset}${c.mute} recreates it)${c.reset}`,
     ``,
     `${c.mute}RESEARCH${c.reset} ${c.mute}(internal — keep the compute table fresh)${c.reset}`,
     `  ${c.bold}research${c.reset} ${c.mute}<slug>${c.reset}   kick a research agent for one provider`,
@@ -47,8 +47,8 @@ export function version(): void {
     // package.json is two dirs up.
     const here = dirname(fileURLToPath(import.meta.url));
     const pkg = JSON.parse(readFileSync(join(here, "..", "..", "package.json"), "utf8"));
-    console.log(`dp ${pkg.version}`);
+    console.log(`deploy ${pkg.version}`);
   } catch {
-    console.log("dp (dev)");
+    console.log("deploy (dev)");
   }
 }

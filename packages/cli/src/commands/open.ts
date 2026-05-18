@@ -5,7 +5,7 @@ import { platform } from "node:os";
 
 export async function open(args: string[]): Promise<void> {
   const { d } = await resolveDeploy(args, {
-    usage: "dp open <name>",
+    usage: "deploy open <name>",
     timeoutMs: 15_000,
   });
 

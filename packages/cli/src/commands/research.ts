@@ -1,6 +1,6 @@
-// `dp research <slug>` — kick a research run on the engine, poll until done.
-// `dp research all`    — fan out across every known provider, wait for all.
-// `dp research ls`     — show snapshot dates + tier counts for each provider.
+// `deploy research <slug>` — kick a research run on the engine, poll until done.
+// `deploy research all`    — fan out across every known provider, wait for all.
+// `deploy research ls`     — show snapshot dates + tier counts for each provider.
 //
 // The engine does the actual agent work. The CLI is a control-plane client.
 
@@ -76,7 +76,7 @@ async function listSnapshot(): Promise<void> {
 export async function research(args: string[]): Promise<void> {
   const target = args[0];
   if (!target) {
-    fail("usage: dp research <slug> | all | ls");
+    fail("usage: deploy research <slug> | all | ls");
     process.exit(2);
   }
 
@@ -114,7 +114,7 @@ async function knownSlugs(): Promise<string[]> {
   // Provider name → slug mapping is fuzzy on the engine side; the engine
   // doesn't expose slugs in this endpoint. Until we add a /providers list,
   // hardcode the known set. New providers are added by calling
-  // `dp research <new-slug>` once — the agent populates the DB.
+  // `deploy research <new-slug>` once — the agent populates the DB.
   return [
     "deploy-me", "hetzner", "ovh", "linode", "digitalocean",
     "vultr", "aws", "gcp", "fly", "railway",
